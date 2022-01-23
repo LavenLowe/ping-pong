@@ -9,7 +9,7 @@ width = 30
 height = 10
 ballX = 5
 ballY = 1
-rocket1 = 0
+rket1 = 0
 rocket2 = 6
 rocketLength = 2
 dirX = 1
@@ -24,8 +24,8 @@ def draw():
             if x == ballX and y == ballY:
                 res += 'o'
             elif x == 0 \
-                    and y >= rocket1 \
-                    and y < rocket1 + rocketLength:
+                    and y >= rket1 \
+                    and y < rket1 + rocketLength:
                 res += '|'
             elif x == width - 1 \
                     and y >= rocket2 \
@@ -36,6 +36,22 @@ def draw():
             x += 1
         print(res)
         y += 1
+
+pynput.keyboard.Listener(
+    on_press = on_press,
+    on_release = on_release
+).start()
+
+def on_press(key):
+    global rocket2, rocket1
+    if key == pynput.keyboard.Key.up and rocket2 >= 1:
+        rocket2 -= 1
+    if key == pynput.keyboard.Key.down and rocket2 <= 7:
+        rocket2 += 1
+    if key == pynput.keyboard.KeyCode.from_char('w') and rket1 >= 1:
+        rket1 -= 1
+    if key == pynput.keyboard.KeyCode.from_char('s') and rket1 <= 7:
+        rket1 += 1
     
 
 
