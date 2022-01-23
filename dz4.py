@@ -15,6 +15,28 @@ rocketLength = 2
 dirX = 1
 dirY = 1
 
+def moveBall():
+    global ballX, ballY, dirX, dirY
+    if ballY == height - 1 or ballY == 0:
+        dirY *= -1
+    if ballX == width - 1 \
+            and ballY >= rocket2 \
+            and ballY < rocket2 + rocketLength:
+        dirX *= -1
+    elif ballX == width - 1:
+        print(Fore.RED)
+        exit("Player 1 win")
+    if ballX == 0 \
+            and ballY >= rocket1 \
+            and ballY < rocket1 + rocketLength:
+        dirX *= -1
+    elif ballX == 0:
+        print(Fore.CYAN)
+        exit("Player 2 win")
+    
+    ballX += dirX
+    ballY += dirY
+    
 def draw():
     y = 0
     while y < height:
